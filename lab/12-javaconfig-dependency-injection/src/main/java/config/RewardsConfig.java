@@ -42,6 +42,7 @@ import javax.sql.DataSource;
  *   not an implementation.
  */
 
+@Configuration
 public class RewardsConfig {
 
 	// Set this by adding a constructor.

@@ -40,7 +40,6 @@ public class RewardNetworkImplTests {
 		AccountRepository accountRepo = new StubAccountRepository();
 		RestaurantRepository restaurantRepo = new StubRestaurantRepository();
 		RewardRepository rewardRepo = new StubRewardRepository();
-
 		// Setup the object being tested by handing what it needs to work
 		rewardNetwork = new RewardNetworkImpl(accountRepo, restaurantRepo, rewardRepo);
 	}
@@ -49,9 +48,10 @@ public class RewardNetworkImplTests {
 	// - Remove the @Disabled annotation below.
 	// - Run this JUnit test. Verify it passes.
 	@Test
-	@Disabled
+	///@Disabled
 	public void testRewardForDining() {
 		// create a new dining of 100.00 charged to credit card '1234123412341234' by merchant '123457890' as test input
+    	System.out.println("===== MY TEST IS RUNNING =====");
 		Dining dining = Dining.createDining("100.00", "1234123412341234", "1234567890");
 
 		// call the 'rewardNetwork' to test its rewardAccountFor(Dining) method

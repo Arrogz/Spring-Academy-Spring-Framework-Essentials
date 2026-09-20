@@ -39,8 +39,7 @@ public class RewardNetworkImpl implements RewardNetwork {
 	 * @param rewardRepository the repository for recording a record of successful reward transactions
 	 */
 	@Autowired
-	public RewardNetworkImpl(AccountRepository accountRepository, RestaurantRepository restaurantRepository,
-			RewardRepository rewardRepository) {
+	public RewardNetworkImpl(AccountRepository accountRepository, RestaurantRepository restaurantRepository, RewardRepository rewardRepository) {
 		this.accountRepository = accountRepository;
 		this.restaurantRepository = restaurantRepository;
 		this.rewardRepository = rewardRepository;
