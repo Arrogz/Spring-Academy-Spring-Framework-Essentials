@@ -1,6 +1,13 @@
 package config;
 
 import javax.sql.DataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import rewards.*;
+import rewards.internal.RewardNetworkImpl;
+import rewards.internal.account.*;
+import rewards.internal.restaurant.*;
+import rewards.internal.reward.*;
 
 /**
  * TODO-00: In this lab, you are going to exercise the following:
@@ -48,4 +55,37 @@ public class RewardsConfig {
 	// Set this by adding a constructor.
 	private DataSource dataSource;
 
+	public RewardsConfig(DataSource dataSource){
+		this.dataSource = dataSource;
+	}
+
+	@Bean
+	public AccountRepository accountRepository(){
+		JdbcAccountRepository repository = new JdbcAccountRepository();
+		repository.setDataSource(dataSource);
+		return repository;
+	}
+
+	@Bean
+	public RestaurantRepository restaurantRepository(){
+		JdbcRestaurantRepository repository = new JdbcRestaurantRepository();
+		repository.setDataSource(dataSource);
+		return repository;
+	}
+
+	@Bean
+	public RewardRepository rewardRepository(){
+		JdbcRewardRepository repository = new JdbcRewardRepository();
+		repository.setDataSource(dataSource);
+		return repository;
+	}
+
+	@Bean 
+	public RewardNetwork rewardNetwork(){
+		return new RewardNetworkImpl(
+			accountRepository(),
+			restaurantRepository(),
+			rewardRepository()
+		);
+	}
 }
