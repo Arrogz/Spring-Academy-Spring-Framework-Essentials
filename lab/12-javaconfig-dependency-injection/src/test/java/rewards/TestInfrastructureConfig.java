@@ -1,5 +1,6 @@
 package rewards;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
@@ -70,4 +71,5 @@ public class TestInfrastructureConfig {
 				.addScript("classpath:rewards/testdb/data.sql") //
 				.build();
 	}
+
 }

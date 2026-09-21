@@ -20,7 +20,7 @@
         <jamon.version>2.82</jamon.version>
         <spring-security.version>5.8.0</spring-security.version>
 
-        <java.version>11</java.version>
+        <java.version>25</java.version>
 
         <!-- Enable maven support for Servlet 3 - no web.xml -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -30,6 +30,8 @@
 
         <!-- Without this, Eclipse will flag an error on pom.xml -->
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
     </properties>
     <dependencies>
         <!--
