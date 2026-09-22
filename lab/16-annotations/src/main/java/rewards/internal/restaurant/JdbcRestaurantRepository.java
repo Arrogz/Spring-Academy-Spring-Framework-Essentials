@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -170,10 +171,10 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 * - Re-run the test and you should be able to see
 	 *   that this method is now being called.
 	 */
+	@PreDestroy
 	public void clearRestaurantCache() {
-		System.out.println("clearRestaurantCache invoked");
-
 		restaurantCache.clear();
+		System.out.println("clearRestaurantCache invoked");
 	}
 
 	/**
