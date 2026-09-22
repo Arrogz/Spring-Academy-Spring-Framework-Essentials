@@ -1,7 +1,11 @@
 package rewards.internal.restaurant;
 
 import common.money.Percentage;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Repository;
+import jakarta.annotation.PostConstruct;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -43,9 +47,10 @@ import java.util.Map;
  *   understand why. (If not, refer to lab document).
  *   We will fix this error in the next step.
  */
-
+@Repository 
 public class JdbcRestaurantRepository implements RestaurantRepository {
 
+	@Autowired 
 	private DataSource dataSource;
 
 	/**
@@ -59,7 +64,6 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 * restaurants. When the instance of JdbcRestaurantRepository is created, a
 	 * Restaurant cache is populated for read only access
 	 */
-
 	public JdbcRestaurantRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
 		this.populateRestaurantCache();
@@ -91,7 +95,7 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 *   construction activity, so using a post-construct, rather than
 	 *   the constructor, is a better practice.
 	 */
-
+	@PostConstruct
 	void populateRestaurantCache() {
 		restaurantCache = new HashMap<String, Restaurant>();
 		String sql = "select MERCHANT_NUMBER, NAME, BENEFIT_PERCENTAGE from T_RESTAURANT";

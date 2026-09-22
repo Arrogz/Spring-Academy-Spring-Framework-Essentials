@@ -20,7 +20,7 @@
         <jamon.version>2.82</jamon.version>
         <spring-security.version>5.8.0</spring-security.version>
 
-        <java.version>25</java.version>
+        <java.version>17</java.version>
 
         <!-- Enable maven support for Servlet 3 - no web.xml -->
         <failOnMissingWebXml>false</failOnMissingWebXml>
@@ -62,6 +62,12 @@
             <artifactId>hsqldb</artifactId>
         </dependency>
 
+        <!-- Annotation -->
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+            <version>2.1.1</version>
+        </dependency>
     </dependencies>
 
     <!-- Dependencies we may need, and their versions -->
