@@ -5,7 +5,7 @@ import common.money.Percentage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Repository;
-import jakarta.annotation.PostConstruct;
+import javax.annotation.PostConstruct;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -50,7 +50,6 @@ import java.util.Map;
 @Repository 
 public class JdbcRestaurantRepository implements RestaurantRepository {
 
-	@Autowired 
 	private DataSource dataSource;
 
 	/**
@@ -64,14 +63,15 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 * restaurants. When the instance of JdbcRestaurantRepository is created, a
 	 * Restaurant cache is populated for read only access
 	 */
+	
 	public JdbcRestaurantRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
-		this.populateRestaurantCache();
 	}
 
 	public JdbcRestaurantRepository() {
 	}
 
+	@Autowired 
 	public void setDataSource(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
@@ -171,6 +171,8 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	 *   that this method is now being called.
 	 */
 	public void clearRestaurantCache() {
+		System.out.println("clearRestaurantCache invoked");
+
 		restaurantCache.clear();
 	}
 

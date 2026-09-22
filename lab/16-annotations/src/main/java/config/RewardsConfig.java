@@ -24,39 +24,7 @@ import javax.sql.DataSource;
 @Configuration
 @ComponentScan("rewards.internal")
 public class RewardsConfig {
-
-	DataSource dataSource;
- 
-	public RewardsConfig(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-		 
-	public RewardNetwork rewardNetwork(){
-		return new RewardNetworkImpl(
-			accountRepository(), 
-			restaurantRepository(), 
-			rewardRepository());
-	}
-	 
-	public AccountRepository accountRepository(){
-		JdbcAccountRepository repository = new JdbcAccountRepository();
-		repository.setDataSource(dataSource);
-		return repository;
-	}
-	 
-	public RestaurantRepository restaurantRepository(){
-		JdbcRestaurantRepository repository = new JdbcRestaurantRepository(dataSource);
-		return repository;
-	}
-	 
-	public RewardRepository rewardRepository(){
-		JdbcRewardRepository repository = new JdbcRewardRepository();
-		repository.setDataSource(dataSource);
-		return repository;
-	}
-	
 	// TODO-02: Remove all of the @Bean methods above.
 	// - Remove the code that autowires DataSource as well.
     // - Run the RewardNetworkTests test. It should fail. Why?
-	
 }
