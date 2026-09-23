@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Configuration;
 
 import rewards.internal.monitor.MonitorFactory;
 import rewards.internal.monitor.jamon.JamonMonitorFactory;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 // TODO-04: Update Aspect related configuration
-// - Add a class-level annotation to scan for components
+// - Add a class-level annotati on to scan for components
 //	 located in the rewards.internal.aspects package.
 // - Add @EnableAspectJAutoProxy to this class to instruct Spring
 //	 to process beans that have the @Aspect annotation.
@@ -15,6 +17,8 @@ import rewards.internal.monitor.jamon.JamonMonitorFactory;
 //    application since it will be automatically added through
 //    auto configuration.)
 @Configuration
+@EnableAspectJAutoProxy
+@ComponentScan("rewards.internal.aspects")
 public class AspectsConfig {
 
 	@Bean
