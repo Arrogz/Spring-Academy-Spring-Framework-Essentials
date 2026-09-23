@@ -51,10 +51,9 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 	public Restaurant findByMerchantNumber(String merchantNumber) {
 		String sql = "select MERCHANT_NUMBER, NAME, BENEFIT_PERCENTAGE, BENEFIT_AVAILABILITY_POLICY"
 				+ " from T_RESTAURANT where MERCHANT_NUMBER = ?";
-		//Restaurant restaurant = null;
 
 		// try (Connection conn = dataSource.getConnection();
-		// 	 PreparedStatement ps = conn.prepareStatement(sql) ){
+		// 	PreparedStatement ps = conn.prepareStatement(sql) ){
 		// 	ps.setString(1, merchantNumber);
 		// 	ResultSet rs = ps.executeQuery();
 		// 	advanceToNextRow(rs);
@@ -63,6 +62,11 @@ public class JdbcRestaurantRepository implements RestaurantRepository {
 		// 	throw new RuntimeException("SQL exception occurred finding by merchant number", e);
 		// }
 
+		Restaurant restaurant = jdbcTemplate.queryForObject(
+			sql,
+			(rs, rowNum) -> mapRestaurant(rs), 
+			merchantNumber
+		);
 		return restaurant;
 	}
 
