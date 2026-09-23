@@ -14,12 +14,17 @@ import rewards.internal.restaurant.JdbcRestaurantRepository;
 import rewards.internal.restaurant.RestaurantRepository;
 import rewards.internal.reward.JdbcRewardRepository;
 import rewards.internal.reward.RewardRepository;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Configuration
 public class RewardsConfig {
 
-	@Autowired
-	DataSource dataSource;
+	JdbcTemplate jdbcTemplate;
+
+	@Autowired  // Optional, Spring will autowire DataSource anyway
+	public RewardsConfig(DataSource dataSource) {
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
 		
 	@Bean
 	public RewardNetwork rewardNetwork(){
@@ -31,19 +36,19 @@ public class RewardsConfig {
 	
 	@Bean
 	public AccountRepository accountRepository(){
-		JdbcAccountRepository repository = new JdbcAccountRepository(dataSource);
+		JdbcAccountRepository repository = new JdbcAccountRepository(jdbcTemplate);
 		return repository;
 	}
 	
 	@Bean
 	public RestaurantRepository restaurantRepository(){
-		JdbcRestaurantRepository repository = new JdbcRestaurantRepository(dataSource);
+		JdbcRestaurantRepository repository = new JdbcRestaurantRepository(jdbcTemplate);
 		return repository;
 	}
 	
 	@Bean
 	public RewardRepository rewardRepository(){
-		JdbcRewardRepository repository = new JdbcRewardRepository(dataSource);
+		JdbcRewardRepository repository = new JdbcRewardRepository(jdbcTemplate);
 		return repository;
 	}
 	
