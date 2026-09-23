@@ -13,6 +13,7 @@ import rewards.internal.monitor.MonitorFactory;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.JoinPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -58,6 +59,7 @@ public class LoggingAspect {
 	// - Write a pointcut expression to match on all update* methods
 	//	 on all Repository classes.
 
+	@Around("execution(* rewards.internal..*Repository.update*(..))")
 	public Object monitor(ProceedingJoinPoint repositoryMethod) throws Throwable {
 		String name = createJoinPointTraceName(repositoryMethod);
 		Monitor monitor = monitorFactory.start(name);
@@ -67,8 +69,9 @@ public class LoggingAspect {
 			//  TODO-08: Add the logic to proceed with the target method invocation.
 			//  - Be sure to return the target method's return value to the caller
 			//    and delete the line below.
-
-			return new String("Delete this line after completing TODO-08");
+			Object returnValue = repositoryMethod.proceed();
+			return returnValue;
+			//return new String("Delete this line after completing TODO-08");
 
 		} finally {
 			monitor.stop();
