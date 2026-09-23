@@ -19,10 +19,12 @@ import org.springframework.stereotype.Repository;
 
 import common.money.Percentage;
 
+import org.springframework.context.annotation.Profile;
 /**
  * Loads restaurants from a data source using the JDBC API.
  */
 @Repository
+@Profile("jdbc")
 public class JdbcRestaurantRepository implements RestaurantRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());

@@ -10,9 +10,13 @@ import rewards.Dining;
 import rewards.RewardConfirmation;
 import rewards.internal.reward.RewardRepository;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Profile;
 /**
  * A dummy reward repository implementation.
  */
+@Profile("stub")
+@Repository
 public class StubRewardRepository implements RewardRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());

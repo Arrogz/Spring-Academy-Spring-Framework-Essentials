@@ -16,10 +16,12 @@ import org.springframework.stereotype.Repository;
 import common.money.MonetaryAmount;
 import common.money.Percentage;
 
+import org.springframework.context.annotation.Profile;
 /**
  * Loads accounts from a data source using the JDBC API.
  */ 
 @Repository
+@Profile("jdbc")
 public class JdbcAccountRepository implements AccountRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());

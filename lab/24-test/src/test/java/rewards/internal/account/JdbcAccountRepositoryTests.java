@@ -14,6 +14,8 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Profile;
 /**
  * Tests the JDBC account repository with a test data source to verify data access and relational-to-object mapping
  * behavior works as expected.

@@ -21,10 +21,13 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import common.money.MonetaryAmount;
 import common.money.Percentage;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.context.annotation.Profile;
 /**
  * Tests the JDBC reward repository with a test data source to verify data access and relational-to-object mapping
  * behavior works as expected.
  */
+
 public class JdbcRewardRepositoryTests {
 
 	private JdbcRewardRepository repository;

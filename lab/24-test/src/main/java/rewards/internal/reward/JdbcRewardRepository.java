@@ -12,11 +12,13 @@ import rewards.RewardConfirmation;
 import javax.sql.DataSource;
 import java.sql.*;
 
+import org.springframework.context.annotation.Profile;
 /**
  * JDBC implementation of a reward repository that records the result of a reward transaction by inserting a reward
  * confirmation record.
  */
 @Repository
+@Profile("jdbc")
 public class JdbcRewardRepository implements RewardRepository {
 
 	private final Logger logger = LoggerFactory.getLogger(getClass());
